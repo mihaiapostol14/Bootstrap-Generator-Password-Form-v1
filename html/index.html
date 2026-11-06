@@ -1,34 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Generator Password Form</title>
-</head>
-<body class="bg-dark-subtle d-flex min-vh-100 justify-content-center align-items-center">
-    <div class="container bg-light">
-      <div class="title text-uppercase text-center p-2">Generator Password</div>
-    <form action="#" method="POST">
-  <div class="form-group">
-    <label for="countSymbols">Count Symbols</label>
-    <input type="number" class="form-control text-capitalize p-2" id="countSymbols" aria-describedby="countSymbols" placeholder="count symbols">
-    <small id="countSymbols" class="form-text text-muted">count symbols</small>
-  </div>
-  <div class="form-group position-relative">
-    <i class="copy-icon fa-solid fa-copy fa-lg position-absolute end-0 me-2 mt-5"></i>
-    <label for="ShowPassword">Your Password</label>
-    <input type="text" class="form-control text-capitalize p-2" id="ShowPassword" placeholder="your password" readonly>
-  </div>
-  <div class="d-grid gap-2 d-md-block justify-content-center text-center p-2">
-  <button class="btn btn-primary" type="submit">Generate</button>
-  <button class="btn btn-primary" type="button">Export</button>
-</div>
-</form>
-    </div>
-</body>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../css/style.css">
-<script type="text/javascript" src="../js/script.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080d13" />
+    <meta name="description" content="Generate secure passwords with customizable character sets." />
+
+    <title>Password Generator</title>
+  </head>
+
+  <body>
+    <main class="password-generator-page">
+      <!-- Toast notification
+      <div class="password-toast-region" aria-live="polite" aria-atomic="true">
+        <div class="password-toast" role="status">
+          <div class="password-toast-content">
+            <span class="password-toast-body"> Password copied </span>
+
+            <button type="button" class="password-toast-close" aria-label="Close notification">&times;</button>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="password-generator-container">
+        <div class="password-generator-card">
+          <div class="password-generator-card-body">
+            <!-- Header -->
+            <header class="password-generator-header">
+              <span class="password-generator-eyebrow"> SECURE BY DESIGN </span>
+
+              <h1 class="password-generator-title">Password Generator</h1>
+
+              <p class="password-generator-subtitle">Create a strong password tailored to your needs.</p>
+            </header>
+
+            <!-- Password generation form -->
+            <form class="password-generator-form" action="#" method="POST">
+              <!-- Password length -->
+              <div class="password-length-field">
+                <label for="passwordLength" class="form-label"> Password length </label>
+
+                <input
+                  type="number"
+                  id="passwordLength"
+                  name="passwordLength"
+                  class="form-control password-length"
+                  min="6"
+                  max="500"
+                  value="12" />
+              </div>
+
+              <!-- Character options -->
+              <fieldset class="password-options">
+                <legend class="password-options-legend">Character sets</legend>
+
+                <div class="form-check">
+                  <input type="checkbox" id="uppercase" name="uppercase" class="form-check-input" checked />
+
+                  <label for="uppercase" class="form-check-label"> Uppercase letters </label>
+                </div>
+
+                <div class="form-check">
+                  <input type="checkbox" id="lowercase" name="lowercase" class="form-check-input" checked />
+
+                  <label for="lowercase" class="form-check-label"> Lowercase letters </label>
+                </div>
+
+                <div class="form-check">
+                  <input type="checkbox" id="numbers" name="numbers" class="form-check-input" checked />
+
+                  <label for="numbers" class="form-check-label"> Numbers </label>
+                </div>
+
+                <div class="form-check">
+                  <input type="checkbox" id="symbols" name="symbols" class="form-check-input" checked />
+
+                  <label for="symbols" class="form-check-label"> Special characters </label>
+                </div>
+              </fieldset>
+
+              <!-- Generate button -->
+              <button type="submit" class="password-generate-button">
+                <span>Generate Password</span>
+
+                <span class="password-button-arrow" aria-hidden="true"> ↗ </span>
+              </button>
+            </form>
+
+            <!-- Generated password output -->
+            <section class="password-output-section" aria-labelledby="generated-password-label">
+              <label id="generated-password-label" class="form-label password-output-label" for="generatedPassword">
+                Generated password
+              </label>
+
+              <div class="password-output-group">
+                <div
+                  id="generatedPassword"
+                  class="form-control show-password"
+                  role="textbox"
+                  aria-readonly="true"
+                  aria-live="polite">
+                  Example@Password1234
+                </div>
+
+                <button type="button" class="btn-copy" data-bs-toggle="tooltip" aria-label="Copy password" data-bs-title="Copy password">
+                <i class="bi bi-copy"></i>
+                </button>
+              </div>
+
+              <!-- Password strength meter -->
+              <div class="password-strength">
+                <div
+                  class="progress"
+                  role="progressbar"
+                  aria-label="Password strength"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0">
+                  <div id="passwordStrengthBar" class="progress-bar bg-danger"></div>
+                </div>
+
+
+              </div>
+            </section>
+
+            <!-- Footer information -->
+            <p class="password-generator-footnote">
+              <span class="password-status-dot" aria-hidden="true"> </span>
+
+              Passwords are generated using your selected character sets.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous" />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <script type="text/javascript" src="../js/script.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.js"></script>
 </html>
