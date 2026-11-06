@@ -1,13 +1,48 @@
-// This code is for password copy by press on copy icon
+class PasswordCopier {
+  constructor(options = {}) {
+    this.options = {
+      animation: true,
+      container: 'container',
+      trigger: 'hover focus',
+      customClass: 'custom-tooltip',
+      ...options,
+    }
 
-let Btncopy = document.querySelector('.copy-icon')
-Btncopy.addEventListener('click', function () {
-  let Passwordinput = document.querySelector('.show-password')
+    // Selectors
+    this.passwordElement = document.querySelector('.show-password')
+    this.button = document.querySelector('.btn-copy')
 
-  Passwordinput.select()
-  Passwordinput.setSelectionRange(0, 99999) // For mobile devices
-  navigator.clipboard
-    .writeText(Passwordinput.value)
-    .then(() => alert('Text copied: ' + Passwordinput.value))
-    .catch(err => console.error('Error copying text: ', err))
-})
+    // Initialize if elements exist
+    if (this.button && this.passwordElement) {
+      this.bindCopyEvent()
+    }
+  }
+
+  bindCopyEvent() {
+    this.button.addEventListener('click', async () => {
+      try {
+        const password = this.passwordElement.textContent.trim()
+        await navigator.clipboard.writeText(password)
+
+        if (this.tooltip) {
+          this.tooltip.setContent({
+            '.tooltip-inner': 'Password copied!',
+          })
+
+          this.tooltip.show()
+
+          setTimeout(() => {
+            this.tooltip.setContent({
+              '.tooltip-inner': 'Copy password',
+            })
+          }, 1500)
+        }
+      } catch (error) {
+        console.error('Failed to copy password:', error)
+      }
+    })
+  }
+}
+
+
+new PasswordCopier()
