@@ -1,63 +1,45 @@
+[![Repository views](https://hits.dwyl.com/mihaiapostol14/Bootstrap-Generator-Password-Form-v1.svg)](https://hits.dwyl.com/mihaiapostol14/Bootstrap-Generator-Password-Form-v1)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/mihaiapostol14/Bootstrap-Generator-Password-Form-v1)
+
 # Bootstrap Generator Password Form
 
-## Preview
-![preview](https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form/blob/da5d91ba8f5c537bcd8e722373e46316234b8c39/assets/preview.png)
+A browser-based password-generator form interface built with HTML, Bootstrap, CSS, and JavaScript. The page provides a numeric symbol-count field, a read-only password display, and controls for generating, exporting, and copying a password. In the current implementation, password generation and export are not wired up, and the copy handler's selector does not match the password input markup.
 
-## Overview
-The `Bootstrap Generator Password Form` repository is a project focused on creating a password generator form using Bootstrap. The repository primarily consists of HTML and CSS, indicating a focus on web development.
+## Tech Stack
 
-- **Repository Name**: Bootstrap Generator Password Form
-- **Owner**: [mihaiapostol14](https://github.com/mihaiapostol14)
-- **Primary Language**: HTML (93.7%) and CSS (6.3%)
-- **Created**: 33 days ago
-- **Default Branch**: main
-- **Visibility**: Public
-- **Has Issues**: Yes
-- **Has Projects**: Yes
-- **Has Wiki**: Yes
+- HTML5
+- CSS3
+- JavaScript (browser APIs)
+- Bootstrap 5.3.3 for layout and form styling
+- Font Awesome 6.7.2 for the copy icon
 
-## Recent Commits
-Here is a list of the most recent commits to the repository:
+Bootstrap and Font Awesome are loaded from CDNs; an internet connection is required to load those assets.
 
-1. **Commit**: [e082274](https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form/commit/e0822742420204cb9ef8581361ba354dbab63816)
-   - **Author**: Mihai Apostol
-   - **Date**: 2025-02-05
-   - **Message**: added style.css
+## Features
 
-2. **Commit**: [041357b](https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form/commit/041357b92f25cf83bcefe130beac20868dbddedf)
-   - **Author**: Mihai Apostol
-   - **Date**: 2025-02-05
-   - **Message**: added script.js
+- **Responsive form layout:** Bootstrap utility classes center the form and adapt the button layout to screen width.
+- **Symbol-count input:** A numeric field accepts the requested symbol count.
+- **Password display:** A read-only text field is provided to show a password.
+- **Generate and Export controls:** Both buttons are present in the interface; no event handlers or generation/export behavior are implemented in `js/script.js` yet.
+- **Copy control:** The copy icon's JavaScript handler attempts to select the password and write it to the clipboard, with a success alert and console error handling. However, the script queries `.show-password`, while the HTML input has the `ShowPassword` ID and no matching class. As written, clicking the icon will not find the input, so copying is not currently functional.
+- **Compact custom styling:** `css/style.css` sets a 400px maximum form width, applies a global box-sizing reset, and styles the copy icon.
 
-3. **Commit**: [249aa6e](https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form/commit/249aa6e5e0f57757a55af87f097057dbdf2eb65f)
-   - **Author**: Mihai Apostol
-   - **Date**: 2025-02-05
-   - **Message**: added index.html
+## Installation and Use
 
-4. **Commit**: [685a8e1](https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form/commit/685a8e1970b8fbea9ee7a94cbbecf3d718c141a0)
-   - **Author**: Mihai Apostol
-   - **Date**: 2025-02-05
-   - **Message**: Initial commit
+Clone the repository, then open `html/index.html` in a browser. No package installation or build step is required.
 
-## Recommendations
-To improve the repository, consider the following recommendations:
+```bash
+git clone https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form-v1.git
+cd Bootstrap-Generator-Password-Form-v1
+```
 
-1. **Documentation**: Add a detailed README.md file to provide an overview of the project, installation instructions, and usage examples.
-2. **Issues and Pull Requests**: Encourage contributions by creating issues for new features or improvements.
-3. **Code Quality**: Regularly review and refactor the code to ensure maintainability.
-4. **Community Engagement**: Promote your repository to gather feedback and attract contributors.
+## Project Structure
 
-## Getting Started
-To get started with the Bootstrap Generator Password Form, follow these steps:
+- `html/index.html` — form markup and external Bootstrap/Font Awesome assets.
+- `css/style.css` — custom layout and copy-icon styling.
+- `js/script.js` — clipboard interaction handler.
+- `assets/preview.png` — project preview image.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/mihaiapostol14/Bootstrap-Generator-Password-Form.git
-   ```
-2. Open the `index.html` file in your browser to view the password generator form.
+## Author
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request with your improvements or suggestions.
-
-## License
-This project is licensed under the MIT License.
+**Mihai Apostol** — [GitHub](https://github.com/mihaiapostol14)
